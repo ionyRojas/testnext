@@ -8,6 +8,7 @@ const customStyles = {
     bottom: 'auto',
     left: '50%',
     marginRight: '-50%',
+    maxHeight: '100%',
     right: 'auto',
     top: '50%',
     transform: 'translate(-50%, -50%)',
@@ -16,7 +17,11 @@ const customStyles = {
 
 Modal.setAppElement('#__next');
 
-function Characters(props) {
+type Props<T> = Readonly<{
+  data: Array<T>;
+}>;
+
+function Characters<T>(props: Props<T>) {
   const { data } = props;
   const {
     actions: { setCharacterSelected },
@@ -53,7 +58,14 @@ function Characters(props) {
       >
         <div>
           <button onClick={closeModal}>Close Modal</button>
-          <button onClick={clearFilter}>Delete Filter</button>
+          <button
+            onClick={() => {
+              clearFilter();
+              closeModal();
+            }}
+          >
+            Delete Filter
+          </button>
         </div>
         {data.map(value => (
           <button

@@ -1,22 +1,25 @@
-function ApplyFilters(result) {
-  const data = result;
+import { ResultsType } from '@components/Dashboard';
+
+function ApplyFilters(result: Readonly<ResultsType[]>) {
+  const data = [...result]
+
   return {
-    _data: data,
-    _isFiltering: false,
+    _data: data as ResultsType[],
+    _isFiltering: false as boolean,
     getDataToBeFiltered() {
       let dataToFilter = data;
       if (this._isFiltering) dataToFilter = this._data;
 
       return dataToFilter;
     },
-    searchFilter(value) {
+    searchFilter(value: string) {
       const dataToFilter = this.getDataToBeFiltered();
 
       if (value.length > 0) {
-        this._data = dataToFilter.filter(item => {
-          const lowerCaseTitle = item?.title?.toLowerCase();
+        this._data = dataToFilter?.filter(item => {
+          const lowerCaseTitle = item?.title?.toLowerCase() as string;
 
-          if (lowerCaseTitle.indexOf(value) > -1) {
+          if (lowerCaseTitle?.indexOf(value) > -1) {
             return true;
           }
         });
@@ -26,13 +29,13 @@ function ApplyFilters(result) {
 
       return this;
     },
-    filterByCharacter(characterSelected) {
+    filterByCharacter(characterSelected: string) {
       const dataToFilter = this.getDataToBeFiltered();
 
       if (characterSelected.length > 0) {
-        this._data = dataToFilter.filter(item => {
+        this._data = dataToFilter?.filter(item => {
           return item?.characters?.items?.some(character => {
-            if (character.name === characterSelected) {
+            if (character?.name === characterSelected) {
               return true;
             }
           });
@@ -42,11 +45,11 @@ function ApplyFilters(result) {
       }
       return this;
     },
-    getData() {
+    getData(): ResultsType[] {
       return this._data;
     },
     reset() {
-      this._data = data;
+      this._data = data as ResultsType[];
     },
   };
 }

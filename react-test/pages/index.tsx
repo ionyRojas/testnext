@@ -3,7 +3,7 @@ import Search from '@components/Search';
 import { getComics } from '@api';
 import Styles from './home.module.scss';
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps() {
   const [err, data] = await getComics();
 
   if (err) {
