@@ -1,0 +1,22 @@
+$sm: 360;
+$md: 780;
+$lg: 1024;
+$xl: 1440;
+
+@mixin md {
+  @media (min-width: #{$md}px) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (min-width: #{$lg}px) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (min-width: #{$xl}px) {
+    @content;
+  }
+}

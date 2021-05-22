@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+// CSS Reset
+// source: https://www.digitalocean.com/community/tutorials/css-minimal-css-reset
+// Normalize and other libraries have IE specific styles and other rules for use cases we might need.
+// A custom minimal reset is used instead.
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  color: black;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+.ReactModal__Body--open,
+.ReactModal__Html--open {
+  overflow: hidden;
+}

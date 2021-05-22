@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+.button {
+  background-color: lightslategrey;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+.modalButtons {
+  background-color: black;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin: 10px;
+  padding: 10px 20px;
+}

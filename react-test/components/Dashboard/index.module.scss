@@ -1,0 +1,74 @@
+@use '@styles/breakpoints.module.scss';
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+
+  @include breakpoints.md {
+    justify-content: space-evenly;
+  }
+}
+
+.article {
+  box-shadow: 0px 1px 5px #bdbaba;
+  margin: 0 4% 60px;
+  max-width: 380px;
+  position: relative;
+
+  @include breakpoints.md {
+    margin: 0 4% 40px;
+    max-width: auto;
+    width: 40%;
+  }
+
+  @include breakpoints.lg {
+    margin: 0 2% 40px;
+    width: 28%;
+  }
+}
+
+.imgContainer {
+  background-color: #444343;
+  min-height: 280px;
+  padding: 20px;
+  text-align: center;
+}
+
+.img {
+  width: 70%;
+
+  @include breakpoints.md {
+    width: 50%;
+  }
+}
+
+.textContainer {
+  min-height: 220px;
+  padding: 20px 20px;
+}
+
+.title {
+  font-size: 1.2em;
+  margin-bottom: 15px;
+}
+
+.description {
+  font-size: 0.9em;
+  margin-bottom: 15px;
+}
+
+.characterItem {
+  color: #848181;
+  font-size: 0.8em;
+}
+
+.price {
+  background-color: #c30505;
+  bottom: 20px;
+  color: white;
+  padding: 5px 10px;
+  position: absolute;
+  right: 20px;
+}
