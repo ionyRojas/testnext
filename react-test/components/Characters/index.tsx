@@ -26,9 +26,9 @@ function Characters(props) {
     setCharacterSelected(value);
   }, []);
 
-  const clearFilter = useCallback(()=> {
-    setCharacterSelected('')
-  }, [])
+  const clearFilter = useCallback(() => {
+    setCharacterSelected('');
+  }, []);
 
   const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -59,8 +59,8 @@ function Characters(props) {
           <button
             className={Styles.modalButtons}
             onClick={() => {
-              onClickCharacterFilter(value)
-              closeModal()
+              onClickCharacterFilter(value);
+              closeModal();
             }}
             key={`button-character-${value}`}
           >

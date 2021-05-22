@@ -56,7 +56,8 @@ const renderCharacters = characters => {
 const renderPrices = prices => {
   const price = prices?.[0]?.price;
 
-  if (prices.length < 1 || price == 0) return <p className={Styles.price}>No price</p>; // i use == to force js to casting the value
+  if (prices.length < 1 || price == 0)
+    return <p className={Styles.price}>No price</p>; // i use == to force js to casting the value
 
   return <span className={Styles.price}>{price} USD</span>;
 };
@@ -71,7 +72,7 @@ const getImageUrl = (images, thumbnail): string => {
   return imageUrl;
 };
 
-const useFilterBySearch = (results): Array<ResultsType> => {
+const useFilterBySearch = results => {
   const [items, setItems] = useState();
   const {
     state: { value, characterSelected },
@@ -86,7 +87,7 @@ const useFilterBySearch = (results): Array<ResultsType> => {
     setItems(newData);
   }, [value, characterSelected]);
 
-  return [items];
+  return items;
 };
 
 function useCharactersList(results) {
@@ -106,7 +107,7 @@ function useCharactersList(results) {
 function Dashboard(props: Props) {
   const { results } = props.data;
 
-  const [items] = useFilterBySearch(results) as Array<ResultsType>;
+  const items = useFilterBySearch(results) as Array<ResultsType>;
   const [charactersList] = useCharactersList(results);
 
   return (
