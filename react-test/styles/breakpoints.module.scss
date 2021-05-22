@@ -1,0 +1,26 @@
+$sm: 360;
+$md: 780;
+$lg: 1024;
+$xl: 1440;
+
+// $desktop-down: 'max-width: #{$desktop - 1}px';
+// $desktop-up: 'min-width: #{$desktop}px';
+// $desktop-large-up: 'min-width: #{$desktop-large}px';
+
+@mixin md {
+  @media (min-width: #{$md}px) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (min-width: #{$lg}px) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (min-width: #{$xl}px) {
+    @content;
+  }
+}
