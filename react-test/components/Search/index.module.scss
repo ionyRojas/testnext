@@ -1,0 +1,30 @@
+@use '@styles/breakpoints.module.scss';
+
+.searchContainer {
+  border: 1px solid #8e8e8e;
+  margin: 60px 4%;
+  position: relative;
+
+  @include breakpoints.lg {
+    margin: 60px auto;
+    width: 80%;
+  }
+}
+
+.searchIcon {
+  fill: #8e8e8e;
+  left: 10px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  vertical-align: middle;
+  width: 24px;
+}
+
+.input {
+  border: none;
+  font-size: 1.2em;
+  height: 50px;
+  padding-left: 55px;
+  width: 100%;
+}
