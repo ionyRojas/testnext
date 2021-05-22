@@ -5,37 +5,41 @@ import { useContext, useEffect, useState } from 'react';
 import ApplyFilters from '@helpers/applyFilters';
 import Styles from './index.module.scss';
 
-type CharactersType = {
-  name: string;
-  collectionURI: string;
-};
+// TODO: move types to his own space
+type CharactersType = Readonly<{
+  available: number;
+  items: Array<{
+    name: string;
+    collectionURI: string;
+  }>;
+}>;
 
-type PriceType = {
+type PriceType = Readonly<{
   price: string;
-};
+}>;
 
-type ImageType = {
+type ImageType = Readonly<{
   path: string;
   extension: string;
-};
+}>;
 
-type ResultsType = {
+export type ResultsType = Readonly<{
   title: string;
   description: string;
   id: number;
   images: ImageType[];
-  thumbnail: ImageType[];
+  thumbnail: ImageType;
   prices: PriceType[];
-  characters: CharactersType[];
-};
+  characters: CharactersType;
+}>;
 
-type Props = {
+type Props = Readonly<{
   data: {
     results: ResultsType[];
   };
-};
+}>;
 
-const renderCharacters = characters => {
+const renderCharacters = (characters: CharactersType) => {
   if (characters.available < 1)
     return <p className={Styles.characterItem}>No Characters Availables</p>;
 
@@ -44,7 +48,7 @@ const renderCharacters = characters => {
       {characters?.items?.map(character => (
         <li
           className={Styles.characterItem}
-          key={`character-${character?.name}-${characters?.collectionURI}`}
+          key={`character-${character?.name}-${character?.collectionURI}`}
         >
           {character?.name}
         </li>
@@ -53,16 +57,17 @@ const renderCharacters = characters => {
   );
 };
 
-const renderPrices = prices => {
-  const price = prices?.[0]?.price;
+const renderPrices = (prices: PriceType[]) => {
+  const price = Number(prices?.[0]?.price);
 
-  if (prices.length < 1 || price == 0)
-    return <p className={Styles.price}>No price</p>; // i use == to force js to casting the value
+  if (prices.length < 1 || price === 0) {
+    return <p className={Styles.price}>No price</p>;
+  }
 
   return <span className={Styles.price}>{price} USD</span>;
 };
 
-const getImageUrl = (images, thumbnail): string => {
+const getImageUrl = (images: ImageType[], thumbnail: ImageType): string => {
   let imageUrl = `${thumbnail.path}.${thumbnail.extension}`;
 
   if (images.length > 0) {
@@ -72,8 +77,8 @@ const getImageUrl = (images, thumbnail): string => {
   return imageUrl;
 };
 
-const useFilterBySearch = results => {
-  const [items, setItems] = useState();
+const useFilterBySearch = (results: ResultsType[]) => {
+  const [items, setItems] = useState<Array<ResultsType>>([]);
   const {
     state: { value, characterSelected },
   } = useContext(FilterContext);
@@ -90,7 +95,7 @@ const useFilterBySearch = results => {
   return items;
 };
 
-function useCharactersList(results) {
+const useCharactersList = (results: ResultsType[]) => {
   const charactersSet = new Set();
 
   results.forEach(item => {
@@ -102,7 +107,7 @@ function useCharactersList(results) {
   const charactersList = Array.from(charactersSet);
 
   return [charactersList];
-}
+};
 
 function Dashboard(props: Props) {
   const { results } = props.data;

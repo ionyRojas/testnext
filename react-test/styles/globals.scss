@@ -45,3 +45,8 @@ img {
   object-fit: cover;
   object-position: 50% 50%;
 }
+
+.ReactModal__Body--open,
+.ReactModal__Html--open {
+  overflow: hidden;
+}
